@@ -41,12 +41,12 @@ const Login = () => {
     <div>
         <section className="pl-[10rem] flex flex-wrap">
             <div className="mr-[4rem] mt-[5rem]">
-                <h1 className="text-2xl font-semibold mb-4">
+                <h1 className="text-2xl text-white font-semibold mb-4">
                     Sign In
                 </h1>
                 <form onSubmit={submitHandler} className="container w-[40rem]">
                     <div className="my-[2rem]">
-                        <label htmlFor="email" className="block text-sm font-medium">
+                        <label htmlFor="email" className="block text-sm text-white font-medium">
                             Email Address
                         </label>
                         <input 
@@ -58,7 +58,7 @@ const Login = () => {
                         />
                     </div>
                     <div className="my-[2rem]">
-                        <label htmlFor="password" className="block text-sm font-medium">
+                        <label htmlFor="password" className="block text-sm text-white font-medium">
                             Password 
                         </label>
                         <input 
@@ -80,7 +80,7 @@ const Login = () => {
 
                 </form>
 
-                <div className="mt-4">
+                <div className="mt-4 text-white">
                     <p>
                         New Customer? {" "}
                         <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}

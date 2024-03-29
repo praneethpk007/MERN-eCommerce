@@ -9,7 +9,7 @@ function App() {
     <>
       <ToastContainer />
       <Navigation />
-      <main className="min-h-screen w-full py-3">
+      <main className="min-h-screen w-full bg-[#101011] py-3">
         <Outlet />
       </main>
     </>
