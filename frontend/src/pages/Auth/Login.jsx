@@ -52,8 +52,9 @@ const Login = () => {
                         <input 
                             type="email" 
                             id="email" 
-                            className="mt-1 p-2 border rounded max-w-full"
+                            className="mt-1 p-2 w-3/4 bg-[#101011] text-white border rounded max-w-full"
                             value={email}
+                            placeholder="Enter email address"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
@@ -64,8 +65,9 @@ const Login = () => {
                         <input 
                             type="password" 
                             id="password" 
-                            className="mt-1 p-2 border rounded max-w-full"
+                            className="mt-1 p-2 border w-3/4 bg-[#101011] text-white rounded max-w-full"
                             value={password}
+                            placeholder="Enter password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
@@ -89,6 +91,11 @@ const Login = () => {
                     </p>
                 </div>
             </div>
+            <img
+                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
+                alt=""
+                className="h-[47rem] w-[53%] xl:block md:hidden sm:hidden rounded-lg"
+            />
         </section>
     </div>
   )

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import {useSelector, useDispatch} from 'react-redux'
 import {useLogoutMutation} from '../../redux/api/usersApiSlice.js'
 import {logout} from '../../redux/features/auth/authSlice.js'
+import { CgProfile } from "react-icons/cg";
 
 const Navigation = () => {
     const {userInfo} = useSelector(state => state.auth)
@@ -17,12 +18,21 @@ const Navigation = () => {
         setDropdownOpen(!dropdownOpen)
     }
 
+    const closeDropDown = () => {
+        setDropdownOpen(false)
+    }
+
     const toggleSideBar = () => {
         setShowSidebar(!showSidebar)
     }
 
     const closeSideBar = () => {
         setShowSidebar(false)
+    }
+
+    const handleMouseLeave = () => {
+        closeSideBar()
+        closeDropDown()
     }
 
     const dispatch = useDispatch()
@@ -46,6 +56,8 @@ const Navigation = () => {
             className={`${showSidebar ? "sidebar-open" : ""} xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4
             text-white bg-black w-[4%] hover:w-[15%] h-[100vh] fixed`}
             id="navigation-container"
+            onMouseEnter={toggleSideBar}
+            onMouseLeave={handleMouseLeave}
         >
             <div className="flex flex-col justify-center space-y-4">
                 <Link
@@ -83,13 +95,15 @@ const Navigation = () => {
                     onClick={toggleDropDown}
                     className="flex items-center text-gray-800 focus:outline-none"
                 >
-                    {userInfo 
-                        ? (<span className="text-white">
-                            {userInfo.username}
-                        </span>)
+                    {userInfo
+                        ? (
+                            showSidebar 
+                                ? <span className="text-white nav-item-name">{userInfo.username}</span>
+                                : <CgProfile size={26} color="white"/>
+                        )
                         : (
                             <></>
-                        )}
+                    )}
                     {userInfo && (
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
