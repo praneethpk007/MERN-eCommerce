@@ -163,12 +163,14 @@ const Navigation = () => {
                         )}
                         <li>
                             <Link
-                                className="block px-4 py-2 bg-black text-white hover:bg-gray-900"                                to="/admin/profile"
+                                to = "/profile"
+                                className="block px-4 py-2 bg-black text-white hover:bg-gray-900"
                             >Profile</Link>
                             </li>
                             <li>
                             <button
-                                className="block px-4 py-2 bg-black text-white hover:bg-gray-900"                                onClick={logoutHandler}
+                                className="block px-4 py-2 bg-black text-white hover:bg-gray-900" 
+                                onClick={logoutHandler}
                             >Log Out</button>
                         </li>
                     </ul>
