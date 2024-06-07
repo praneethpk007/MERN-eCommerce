@@ -12,7 +12,9 @@ import { addProduct,
     getProducts, 
     fetchProductById, 
     getAllProducts, 
-    addProductReview
+    addProductReview,
+    getTopProducts,
+    getNewProducts,
 } from "../controllers/productController.js";
 
 router.route('/')
@@ -20,6 +22,10 @@ router.route('/')
     .post(authenticate, authorizeAdmin, ExpressFormidable(), addProduct);
 router.route('/allproducts')
     .get(getAllProducts);
+router.route('/top')
+    .get(getTopProducts);
+router.route('/new')
+    .get(getNewProducts);
 router.route('/:id')
     .get(fetchProductById)
     .put(authenticate, authorizeAdmin, ExpressFormidable(), updateProductDetails)

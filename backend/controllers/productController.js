@@ -118,6 +118,58 @@ const getAllProducts = asyncHandler(async(req,res) => {
     }
 })
 
+const addProductReview = asyncHandler(async(req,res) => {
+    try {
+        const { rating, comment } = req.body;
+        const product = await Product.findById(req.params.id);
+        if (!product){
+            res.status(404);
+            throw new Error("Product not found.");
+        } else{
+            const alreadyReviewed = product.reviews.find(r => r.user.toString() === req.user._id.toString());
+            if(alreadyReviewed){
+                res.status(400);
+                throw new Error("Product already reviewed.");
+            } else {
+                const review = {
+                    name: req.user.username,
+                    rating: Number(rating),
+                    comment,
+                    user: req.user._id,
+                };
+                product.reviews.push(review);
+                product.numReviews = product.reviews.length;
+                product.rating = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;
+                await product.save();
+                res.status(201).json({message: "Review added."});
+            }
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(400).json(error.message);
+    }
+})
+
+const getTopProducts = asyncHandler(async(req,res) => {
+    try {
+        const products = await Product.find({}).sort({rating: -1}).limit(4);
+        res.json(products);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json(error.message);
+    }
+})
+
+const getNewProducts = asyncHandler(async(req,res) => {
+    try {
+        const newProducts = await Product.find({}).sort({_id: -1}).limit(4);
+        res.json(newProducts);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json(error.message);
+    }
+})
+
 export { 
     addProduct,
     updateProductDetails,
@@ -126,4 +178,6 @@ export {
     fetchProductById,
     getAllProducts,
     addProductReview,
+    getTopProducts,
+    getNewProducts,
 };
