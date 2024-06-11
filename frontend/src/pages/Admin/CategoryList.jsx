@@ -7,6 +7,7 @@ import { useCreateCategoryMutation,
 import { toast } from "react-toastify"
 import CategoryForm from "../../components/CategoryForm"
 import Model from "../../components/Model"
+import AdminMenu from "./AdminMenu.jsx"
 
 
 const CategoryList = () => {
@@ -80,7 +81,7 @@ const CategoryList = () => {
 
   return (
     <div className="ml-[10rem] flex flex-col md:flex-row">
-        {/*Admin Menu*/}
+        <AdminMenu />
         <div className="md:w-3/4 p-3">
             Manage Categories
         <CategoryForm value={name} setValue={setName} handleSubmit={handleCreateCategory}/>
