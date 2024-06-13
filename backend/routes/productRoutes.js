@@ -18,7 +18,7 @@ import { addProduct,
 } from "../controllers/productController.js";
 
 router.route('/')
-    .get(authenticate, authorizeAdmin, getProducts)
+    .get(authenticate, getProducts)
     .post(authenticate, authorizeAdmin, ExpressFormidable(), addProduct);
 router.route('/allproducts')
     .get(getAllProducts);
