@@ -15,6 +15,7 @@ import { addProduct,
     addProductReview,
     getTopProducts,
     getNewProducts,
+    getFilteredProducts
 } from "../controllers/productController.js";
 
 router.route('/')
@@ -32,5 +33,5 @@ router.route('/:id')
     .delete(authenticate, authorizeAdmin, checkId, deleteProduct);
 router.route('/:id/reviews')
     .post(authenticate, checkId, addProductReview);
-
+router.route('/filtered-products').post(getFilteredProducts)
 export default router;

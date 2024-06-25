@@ -1,3 +1,4 @@
+import { get } from "mongoose";
 import { PRODUCT_URL, UPLOAD_URL } from "../constants.js";
 import {apiSlice} from "./apiSlice.js";
 
@@ -68,6 +69,13 @@ export const productApiSlice = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        getFilteredProducts: builder.query({
+            query: ({checked, radio}) => ({
+                url: `${PRODUCT_URL}/filtered-products`,
+                method: "POST",
+                body: {checked,radio}
+            })
+        })
     }),
 });
 
@@ -83,4 +91,5 @@ export const {
     useGetTopProductsQuery,
     useGetNewProductsQuery,
     useUploadProductImageMutation,
+    useGetFilteredProductsQuery,
 } = productApiSlice;

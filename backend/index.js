@@ -2,6 +2,7 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 //utils
@@ -10,12 +11,16 @@ import userRoutes from './routes/userRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import razorpayRoutes from './routes/razorpayRoutes.js';
 
 dotenv.config();
 const port = process.env.PORT || 3000;
 connectDB();
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +30,12 @@ app.use('/api/users', userRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/razorpay', razorpayRoutes);
+
+app.get('/api/config/razorpay', (req,res) => {
+    res.send({clientId : process.env.RAZORPAY_KEY_ID})
+})
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
