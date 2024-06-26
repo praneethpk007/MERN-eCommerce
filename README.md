@@ -1,7 +1,5 @@
 # E-Commerce Project
 
-![E-Commerce](https://via.placeholder.com/800x300.png?text=E-Commerce+Project)
-
 ## Table of Contents
 
 - [Introduction](#introduction)
